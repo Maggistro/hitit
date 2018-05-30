@@ -1,0 +1,33 @@
+#root {
+}
+
+.menu button{
+    width:100%
+}
+
+.main {
+    background: lightgray;
+    width: fit-content;
+}
+
+.screen {
+    height: 400px;
+    width: 200px;
+    position: relative;
+}
+
+.it{
+    height: 10%;
+    width: 20%;
+    position: absolute;
+}
+
+.it button{
+    height: 100%;
+    width: 100%;
+}
+
+.scoreBoard{
+    width: 70%;
+    margin: auto;
+}
