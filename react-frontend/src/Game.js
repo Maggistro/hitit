@@ -15,7 +15,7 @@ class Game extends React.Component{
         }
     }
 
-    timer = {}
+    timer = {};
 
 
     onHit(id){
@@ -23,13 +23,13 @@ class Game extends React.Component{
             points: this.state.points,
             streak: this.state.streak,
             buttons: this.state.buttons
-        }
+        };
 
         newState.points += newState.streak + 1; //add point + streak bonus
         newState.streak+=1; //count streak
         let index = newState.buttons.findIndex((b) => {return b.count === id});
         newState.buttons.splice(index, 1);
-        this.clearTimer(id)
+        this.clearTimer(id);
         this.setState(newState,
             () => {this.updateButtons()});
     }
@@ -39,7 +39,7 @@ class Game extends React.Component{
             clearTimeout(this.timer[id]);
             delete this.timer[id];
         }else{
-            for(var button in this.timer){
+            for(const button in this.timer){
                 clearTimeout(this.timer[button]);
             }
             this.timer={};
@@ -48,7 +48,7 @@ class Game extends React.Component{
 
     onMiss(){
         //count missed buttons, end streak and remove buttons left
-        this.clearTimer()
+        this.clearTimer();
         this.setState({streak: 0, buttons: []},
             () => this.updateButtons())
     }
@@ -57,7 +57,7 @@ class Game extends React.Component{
         this.timer[id] = (
             setTimeout(function(){
                 if(this.state.running===2){
-                    var newButtons = this.state.buttons,
+                    const newButtons = this.state.buttons,
                         index = newButtons.findIndex((b) => {return b.count === id});
                     newButtons.splice(index, 1);
                     this.setState({buttons: newButtons},
@@ -78,12 +78,12 @@ class Game extends React.Component{
         //get height for button position
         const height = this.size.height;
         const width = this.size.width;
-        const currentLevel = Math.floor(Math.sqrt(this.state.count || 1))
+        const currentLevel = Math.floor(Math.sqrt(this.state.count || 1));
 
         if(this.state.buttons.length< currentLevel){
 
-            var newButtons = [];
-            for(var level=this.state.buttons.length; level<currentLevel; level++){
+            const newButtons = [];
+            for(let level=this.state.buttons.length; level<currentLevel; level++){
                 let left = Math.random() * width*0.6 + width*0.2,
                     top = Math.random() * height*0.8 + height*0.1;
 
@@ -106,7 +106,7 @@ class Game extends React.Component{
     }
 
     resetGame(){
-        this.clearTimer()
+        this.clearTimer();
         this.setState({
             running: 2,
             count: 0,
@@ -117,14 +117,14 @@ class Game extends React.Component{
     }
 
     endGame(){
-        this.clearTimer()
+        this.clearTimer();
         this.setState({
             running: 0,
             count: 0,
             points: 0,
             streak: 0,
             buttons: []
-        })
+        });
         this.props.switch('MENU');
     }
 
@@ -186,7 +186,7 @@ class Screen extends React.Component{
 
     render(){
         let orbs = [];
-        var screenContent =
+        const screenContent =
             <div className="screen"
                  ref={ (divElement) => this.props.sizeElement(divElement)}
                  onClick={() => this.props.onMiss()}
@@ -196,15 +196,15 @@ class Screen extends React.Component{
         switch(this.props.state){
             //game not running
             case 0:
-                orbs.push(<div>You're not playing. Whats wrong?</div>)
+                orbs.push(<div>You're not playing. Whats wrong?</div>);
                 break;
             //game paused (tricky)
             case 1:
-                orbs.push(<div>LAME!</div>)
+                orbs.push(<div>LAME!</div>);
                 break;
             //game running
             case 2:
-                for(var i=0; i< this.props.buttons.length; i++){
+                for(let i=0; i< this.props.buttons.length; i++){
                     let hitButton = this.props.buttons[i];
                     orbs.push(<HitButton
                         count= {hitButton.count}

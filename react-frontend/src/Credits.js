@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class Credits extends React.Component{
+class Credits extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -11,7 +11,7 @@ class Credits extends React.Component{
 
     componentDidMount(){
         fetch('/credits')
-            .then(res => {if(res.status != 404) res.json()})
+            .then(res => {if(res.status !== 404) return res.json()})
             .then(credits => {if(credits) this.setState({credits: credits})})
     }
 
