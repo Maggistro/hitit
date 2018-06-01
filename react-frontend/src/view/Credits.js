@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class Credits extends Component{
+class Credits extends React.Component{
     constructor(props){
         super(props);
         this.state = {

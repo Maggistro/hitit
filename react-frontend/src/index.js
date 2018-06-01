@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Menu from './Menu.js';
-import Game from './Game.js';
-import Credits from './Credits.js';
+import Menu from './view/Menu.js';
+import Game from './view/Game.js';
+import Credits from './view/Credits.js';
 
 class Main extends React.Component{
     constructor(props){
