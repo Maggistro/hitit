@@ -26,6 +26,7 @@ class Screen extends React.Component{
                 for(let i=0; i< this.props.buttons.length; i++){
                     let hitButton = this.props.buttons[i];
                     orbs.push(<HitButton
+                        key={hitButton.count}
                         count= {hitButton.count}
                         onHit= {() => this.props.onHit(hitButton.count)}
                         toSlow= {() => this.props.toSlow(hitButton.count)}
